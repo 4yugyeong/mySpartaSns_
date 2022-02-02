@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    회원가입
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div class="wrap">
+            <h2 class="title-center"> 회원가입 </h2>
+{#            <form class="form-area" method="post" action="/sign-up/" >#}
+{#                 get은 읽어오는데 쓰인다! post는 수정, 저장 하는데에 쓰인다!#}
+{#                form 테크 화면에 있는 데이터를 서버로 전송할 때 많이 쓰인다! # form에 여러가지 속성들 더 추가! # 어떤 url로 보내줄 건지!(action)#}
+                {% csrf_token %}
+{#                보완 기능 추가! csrf는 데이터를 장고에서 post 방식으로 보낼 때 보완을 지켜주기 위해서 적어주는 기능!#}
+                <div class="form-group mt-2 mb-2">
+                    <label for="username">이름</label>
+                    <input type="text" class="form-control" id="username" name="username">
+{#                    우리가 보아야 될 것! input 값의 name! id X! username!#}
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="password">비밀번호</label>
+                    <input type="password" class="form-control" id="password" name="password">
+{#                     input 값의 name! password!#}
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="password2">비밀번호 확인</label>
+                    <input type="password" class="form-control" id="password2" name="password2">
+{#                    input 값의 name! password2!#}
+                </div>
+                <div class="form-group mt-2 mb-2">
+                    <label for="bio">나를 한마디로</label>
+                    <input type="text" class="form-control" id="bio" name="bio">
+                </div>
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <hr>
+                <div style="float: right">
+                    <button type="submit" class="btn btn-primary">회원가입</button>
+{#                    button은 form을 실행시켜 주는 역할! 어디로? sign-up url로! 어떤 방식으로? post 방식으로! 데이터 보냄!#}
+                    <a href="/sign-in" class="btn btn-secondary">로그인 페이지로</a>
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock %}
